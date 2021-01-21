@@ -21,7 +21,7 @@ class CreateUsersEventsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('event_id')->unsigned();
             
-            $table->bigInteger('authorization_level')->unsigned();
+            $table->bigInteger('authorization_level')->unsigned()->default(0);
 
             $table->foreign('user_id')
                   ->references('id')

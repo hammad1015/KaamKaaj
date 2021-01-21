@@ -17,23 +17,7 @@ use App\Http\Controllers\EventController;
 Route::get('/home', function () { return view('pages.home');  })->name('home'); 
 Route::get('/'    , function () { return view('pages.home');  })->name('home'); 
 
-// Route::get ('/register' ,[UserController::class, 'register' ])->name('register')->middleware('guest');
-// Route::post('/register' ,[UserController::class, 'register' ]);
-
-// Route::get ('/login'    ,[UserController::class, 'login'    ])->name('login')   ->middleware('guest');
-// Route::post('/login'    ,[UserController::class, 'login'    ]);
-
-// Route::get ('/logout'   ,[UserController::class, 'logout'   ])->name('logout')  ->middleware('auth');
-
-// Route::get ('/profile'  ,[UserController::class, 'index'    ])->name('profile') ->middleware('auth');
-
-// Route::get ('/event'    ,[EventController::class, 'index'   ])->name('event')   ->middleware('auth');
-
-// Route::get ('/new-event',[EventController::class, 'create'  ])->name('new-event') ->middleware('auth');
-// Route::post('/new-event',[EventController::class, 'create'  ]);
-
-
-
+/* -------------------------------------- User group routes ------------------------------------------- */
 Route::prefix('user')->group(function(){
 
     Route::get ('/'         ,[UserController::class, 'index'    ])->name('profile') ->middleware('auth');    
@@ -48,11 +32,16 @@ Route::prefix('user')->group(function(){
 
 });
 
+/* -------------------------------------- event group routes ------------------------------------------- */
 Route::prefix('event')->group(function(){
 
-    Route::get ('/'      ,[EventController::class, 'index'   ])->name('event')     ->middleware('auth');
+    Route::get ('/{id}'  ,[EventController::class, 'index'   ])->name('event')     ->middleware('auth');
 
     Route::get ('/create',[EventController::class, 'create'  ])->name('new-event') ->middleware('auth');
     Route::post('/create',[EventController::class, 'create'  ]);
+
+    /* ---------------------------------- channel sub-group routes -------------------------------------- */
+    Route::prefix('channel')->group(function (){
+    });
 
 });

@@ -42,11 +42,11 @@ class EventController extends Controller
         ]);
 
         // current user has authorization level of 0 (team lead)
-        Auth::user()->events()->save($event, array('authorization_level' => 0));
+        Auth::user()->events()->save($event);
             
         // redirecting to event page
         return redirect()->route('event');
     }
 
-    
+
 }
