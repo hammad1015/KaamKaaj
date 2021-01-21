@@ -1,9 +1,11 @@
 @extends('base')
-@section('content')
+@section('form')
 
 new event
 
-<form action="" method="POST">
+<form action="{{ route('new-event') }}" method="POST">
+
+    @csrf
 
     <div class="input-group form-group mb-3">
         <div class="input-group-prepend">
@@ -15,6 +17,10 @@ new event
             class="form-control" 
             placeholder="Event Name"
         >
+        @error('name')
+            -------------------name required
+        @enderror
+
     </div>
   
     <div class="input-group form-group mb-3">
@@ -30,21 +36,31 @@ new event
         <div class="input-group-append">
             <span class="input-group-text">.00</span>
         </div>
+
+        @error('budget')
+            -------------------budget required
+        @enderror
+
     </div>
   
     <div class="input-group form-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text">Event Lead</span>
+            <span class="input-group-text">News Letter</span>
         </div>
         <input 
             type="email" 
-            name="lead" 
+            name="email" 
             class="form-control" 
-            placeholder="username"
+            placeholder="Event Email"
             >
         <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2">@example.com</span>
         </div>
+
+        @error('email')
+            -------------------email required
+        @enderror
+
     </div>
     <br>
   
@@ -53,23 +69,22 @@ new event
     <div class="input-group mb-3">
         <input 
             type="text" 
-            name="participant" 
+            name="location" 
             class="form-control" 
-            placeholder="Participant's username"
+            placeholder="Event's location"
         >
-        <div class="input-group-append">
+        {{-- <div class="input-group-append">
             <button class="btn btn-dark" type="button">Add Participant</button>
-        </div>
+        </div> --}}
     </div>
   
     <div class="input-group">
-        <textarea 
+        <textarea
             name="datails" 
-            class="form-control" 
+            class="form-control"
             placeholder="Event Details" 
-            aria-label="With textarea"
-        >
-        </textarea>
+            style="height: 20rem"
+        ></textarea>
     </div>
     <br>
   

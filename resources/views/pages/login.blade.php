@@ -1,10 +1,13 @@
 @extends('base')
-@section('content')
+@section('form')
 
 
 login
 
-<form action="{{ route('login') }}" method="post">
+<form 
+    action="{{ route('login') }}" 
+    method="post"
+    >
 
     @if (session('status'))
         {{ session('status') }}

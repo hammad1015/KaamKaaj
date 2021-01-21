@@ -1,10 +1,13 @@
 @extends('base')
-@section('content')
+@section('form')
 
 
 register
 
-<form action="{{ route('register') }}" method="post">
+<form 
+    action="{{ route('register') }}" 
+    method="post"
+    >
 
     @csrf
 

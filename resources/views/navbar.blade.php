@@ -6,9 +6,11 @@
 
         <ul class="navbar-nav mr-auto">
 
+            @auth
             <li class="nav-item">
-                {{-- <a class="nav-link" href="{{ route('event') }}">New Event</a> --}}
+                <a class="nav-link" href="{{ route('new-event') }}">New Event</a>
             </li>
+            @endauth
 
         </ul>
             

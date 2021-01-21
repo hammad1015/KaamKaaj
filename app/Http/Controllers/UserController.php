@@ -11,9 +11,23 @@ use App\User;
 
 class UserController extends Controller
 {
+    
+    public function index(Request $request)
+    {
+        $user   = Auth::user();
+        $events = $user->events;
+        
+
+        return view('pages.profile', [
+            'user'   => $user,
+            'events' => $events,
+        ]);
+    }
 
     public function register(Request $request)
     {
+        $user = Auth::user();
+        
         /* -----------------get------------------- */
         if ($request->isMethod('get'))
         {
@@ -29,7 +43,7 @@ class UserController extends Controller
         ]);
         
         // creating user entry in the database
-        User::create([
+        $usr = User::create([
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
@@ -38,8 +52,8 @@ class UserController extends Controller
         // authenticating user
         Auth::attempt($request->only('email', 'password'));
 
-        // redirecting to home
-        return redirect()->route('home');
+        // redirecting to user profile
+        return redirect()->route('profile');
     }
 
     public function login(Request $request)
@@ -57,7 +71,7 @@ class UserController extends Controller
             'password'  => 'required',
         ]);
 
-        // authrnticating user
+        // authenticating user
         if (!Auth::attempt($request->only('email', 'password')))
         {
             return back()->with('status', 'Invalid Login Details');
@@ -74,8 +88,4 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 
-    public function profile(Request $request)
-    {
-        return view('pages.profile');
-    }
 }

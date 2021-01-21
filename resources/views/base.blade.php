@@ -13,12 +13,19 @@
 <body>
 
     @include('navbar')
+    <br>
     
-    <div class="container col-12 col-md-6">
+    <div class="container col-12 col-md-6" >
+        
+        @yield('form')
+        
+    </div>
+    <div class="container col-12 col-md-8">
 
         @yield('content')
 
     </div>
+    
 
 </body>
 
