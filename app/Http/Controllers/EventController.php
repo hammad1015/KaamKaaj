@@ -6,17 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Event;
+use App\User;
 
 
 class EventController extends Controller
 {
+
     public function index(Event $event)
     {
-        // dd("inside event index with id \n $event");
-
-        // $event    = Event::find($id);
         $channels = $event->channels;
-
 
         return view('pages.event', [
             'event'    => $event,
@@ -49,15 +47,36 @@ class EventController extends Controller
             'location'  => $request->location,
             'details'   => $request->datails,
         
-        ]);#->users()->save(Auth::user());
+        ]);
 
         // current user has authorization level of 0 by default (team lead)
         Auth::user()->events()->save($event);
         
             
         // redirecting to event page
-        return redirect()->route('event', $event->id);
+        return redirect()->route('event', $event);
     }
 
+    public function addParticipant(Event $event, Request $request)
+    {
+        
+        // validating request
+        $this->validate($request, [
+            'email'                 => 'required|email', 
+            'authorization_level'   => 'required',
+        ]);
+            
+        // finding user
+        $user = User::where('email', $request->email)->first();
+        
+        // add user to the event
+        $user->events()->save($event, array('authorization_level' => $request->authorization_level));
 
+        return back();
+    }
+
+    public function delete(Event $event)
+    {
+        // delete event
+    }
 }

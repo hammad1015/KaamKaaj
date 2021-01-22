@@ -89,4 +89,8 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 
+    public function delete()
+    {
+        // delete user
+    }
 }

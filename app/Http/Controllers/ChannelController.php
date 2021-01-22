@@ -2,29 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Channel;
 use Illuminate\Http\Request;
+
+use App\Channel;
+use App\Event;
 
 class ChannelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+   
+    public function index(Event $event, Channel $channel)
     {
-        //
+        $posts = $channel->posts;
+
+        return view('pages.channel', [
+            'channel' => $channel,
+            'posts' => $posts,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Event $event, Request $request)
     {
-        //
+
+        // validating request
+        $this->validate($request, [
+            'name'                  => 'required', 
+            'authorization_level'   => 'required',
+        ]);
+
+        // creating channel model
+        $channel = Channel::make([
+            'name'                  => $request->name,
+            'authorization_level'   => $request->authorization_level,
+        ]);
+
+        // adding the channel to the current event
+        $event->channels()->save($channel);
+
+        return back();            
     }
 
     /**

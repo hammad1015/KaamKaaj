@@ -12,6 +12,8 @@
 // */
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\PostController;
 
 
 Route::get('/home', function () { return view('pages.home');  })->name('home'); 
@@ -32,17 +34,49 @@ Route::prefix('user')->group(function(){
 
 });
 
+// /* -------------------------------------- event group routes ------------------------------------------- */
+// Route::prefix('event')->group(function(){
+
+//     Route::get ('/create',[EventController::class, 'create'  ])->name('new-event') ->middleware('auth');
+//     Route::post('/create',[EventController::class, 'create'  ])->name('new-event');
+    
+//     Route::post('/{event}/new-participant', [EventController::class, 'addParticipant'])->name('new-participant');
+    
+//     Route::get ('/{event}'  ,[EventController::class, 'index'   ])->name('event')     ->middleware('auth');//->middleware('authorize')
+
+
+//     /* ---------------------------------- channel sub-group routes -------------------------------------- */
+//     Route::prefix('channel')->group(function (){
+        
+//         Route::post('/{event}/create', [ChannelController::class, 'create'])->name('new-channel');//->middleware('authorize')
+
+//         Route::get('/{channel}', [ChannelController::class, 'index'])->name('channel');//->middleware('authorize')
+//     });
+
+// });
+
+
 /* -------------------------------------- event group routes ------------------------------------------- */
 Route::prefix('event')->group(function(){
 
-    
     Route::get ('/create',[EventController::class, 'create'  ])->name('new-event') ->middleware('auth');
     Route::post('/create',[EventController::class, 'create'  ])->name('new-event');
+
     
-    Route::get ('/{event}'  ,[EventController::class, 'index'   ])->name('event')     ->middleware('auth');
+    Route::prefix('/{event}')->group(function (){
 
-    /* ---------------------------------- channel sub-group routes -------------------------------------- */
-    Route::prefix('channel')->group(function (){
+        Route::get ('/'                 , [EventController::class, 'index'          ])->name('event')     ->middleware('auth');//->middleware('authorize')
+        Route::post('/new-participant'  , [EventController::class, 'addParticipant' ])->name('new-participant');
+    
+        
+        /* ---------------------------------- channel sub-group routes -------------------------------------- */
+        Route::prefix('channel')->group(function (){
+    
+            Route::post('/create'   , [ChannelController::class, 'create'   ])->name('new-channel');
+            Route::get ('/{channel}', [ChannelController::class, 'index'    ])->name('channel');
+    
+        });
     });
-
 });
+
+
