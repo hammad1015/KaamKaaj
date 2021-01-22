@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 
+use App\Channel;
+use App\Event;
+
 class PostController extends Controller
 {
     /**
@@ -22,9 +25,23 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Event $event, Channel $channel, Request $request)
     {
-        //
+        // validating request
+        $this->validate($request, [
+            'content'      => 'required',
+        ]);
+
+        // creating a post
+        $post = Post::make([
+            'content' => $request->content,
+        ]);
+
+        // adding post to the current channel
+        $channel->posts()->save($post);
+
+        // directing back to the previous page
+        return back()->with('status', 'post successfully created');
     }
 
     /**

@@ -23,7 +23,9 @@ class CreateChannelsTable extends Migration
 
             $table->foreign('event_id')
                   ->references('id')
-                  ->on('events');
+                  ->on('events')
+                  ->onDelete('cascade');
+
 
             $table->timestamps();
         });

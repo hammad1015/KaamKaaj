@@ -21,7 +21,8 @@ class CreatePostsTable extends Migration
 
             $table->foreign('channel_id')
                   ->references('id')
-                  ->on('channels');
+                  ->on('channels')
+                  ->onDelete('cascade');
 
             $table->timestamps();
         });

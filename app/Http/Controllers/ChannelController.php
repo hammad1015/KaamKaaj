@@ -12,11 +12,12 @@ class ChannelController extends Controller
    
     public function index(Event $event, Channel $channel)
     {
-        $posts = $channel->posts;
+        $posts = $channel->posts->reverse();
 
         return view('pages.channel', [
+            'event'   => $event,
             'channel' => $channel,
-            'posts' => $posts,
+            'posts'   => $posts,
         ]);
     }
 
@@ -38,7 +39,7 @@ class ChannelController extends Controller
         // adding the channel to the current event
         $event->channels()->save($channel);
 
-        return back();            
+        return back()->with('status', 'Channel successfully created');            
     }
 
     /**

@@ -4,8 +4,12 @@
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">{{ $user->name }}</h1>
-        <p class="lead">{{ $user->email }}</p>
+
+        <h1 class="display-4">{{ $user->name  }}</h1>
+        <p  class="lead"     >{{ $user->email }}</p>
+
+        <a   href="{{  route('user-del')  }}"> delete account </a>
+
     </div>
 </div>
 
@@ -15,11 +19,15 @@
     <h1 class="display-4">Events: </h1>
 
     @foreach ($events as $event)
-    <div class="container container col-12 col-md-8">
+    <div 
+        class="container border-bottom border-dark my-3 pb-2 col-12 col-md-8"
+    >
         <h1 class="display-4">{{ $event->name }}</h1>
         <p class="lead">{{ $event->email }}</p>
         <a href="{{ route('event', $event) }}"> link </a>
+
     </div>
+    
     @endforeach
 
 </div>

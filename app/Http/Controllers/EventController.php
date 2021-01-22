@@ -15,8 +15,10 @@ class EventController extends Controller
     public function index(Event $event)
     {
         $channels = $event->channels;
+        $level    = Auth::user()->events()->where('event_id', $event->id)->first()->pivot->authorization_level;
 
         return view('pages.event', [
+            'level'    => $level,
             'event'    => $event,
             'channels' => $channels,
         ]);
@@ -59,7 +61,9 @@ class EventController extends Controller
 
     public function addParticipant(Event $event, Request $request)
     {
-        
+
+        $this->authorize('addParticipant', $event);
+
         // validating request
         $this->validate($request, [
             'email'                 => 'required|email', 
@@ -72,11 +76,40 @@ class EventController extends Controller
         // add user to the event
         $user->events()->save($event, array('authorization_level' => $request->authorization_level));
 
-        return back();
+        return back()->with('status', 'participant successfully added');
+    }
+
+    public function removeParticipant(Event $event)
+    {
+        # code...
+    }
+
+    public function listParticipants(Event $event)
+    {
+        $users  = $event->users;
+        // $levels = $user->events()->where('event_id', $event->id)->first()->pivot->authorization_level;
+
+        return view('pages.participants', [
+            'users'  => $users,
+            // 'levels' => $levels,
+        ]);
+    }
+
+    public function leave(Event $event)
+    {
+        $this->authorize('leave', $event);
+
+        $event->users()->detach(Auth::user()->id);
+
+        return redirect(route('profile'))->with('status', 'Event successfully left');
     }
 
     public function delete(Event $event)
     {
-        // delete event
+        $this->authorize('delete', $event);
+
+        $event->delete();
+
+        return redirect(route('profile'))->with('status', 'event successfully deleted');
     }
 }

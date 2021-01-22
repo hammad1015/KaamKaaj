@@ -20,7 +20,7 @@
             
             @auth
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('profile') }}">My Profile</a>
+                <a class="nav-link" href="{{ route('profile') }}">{{ Auth::user()->name }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}">Logout</a>

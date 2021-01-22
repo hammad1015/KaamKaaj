@@ -91,6 +91,8 @@ class UserController extends Controller
 
     public function delete()
     {
-        // delete user
+        Auth::user()->delete();
+
+        return redirect(route('home'))->with('status', 'user account successfully deleted');
     }
 }
