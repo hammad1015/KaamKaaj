@@ -17,6 +17,7 @@
     <div class="container container col-12 col-md-8">
         <h1 class="display-4">{{ $event->name }}</h1>
         <p class="lead">{{ $event->email }}</p>
+        <a href="{{ route('event', $event) }}"> link </a>
     </div>
     @endforeach
 

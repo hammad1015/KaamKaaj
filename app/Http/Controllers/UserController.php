@@ -16,7 +16,8 @@ class UserController extends Controller
     {
         $user   = Auth::user();
         $events = $user->events;
-        
+
+        // dd($events);
 
         return view('pages.profile', [
             'user'   => $user,

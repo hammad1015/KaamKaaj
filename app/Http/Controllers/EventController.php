@@ -10,14 +10,23 @@ use App\Event;
 
 class EventController extends Controller
 {
-
-    public function index()
+    public function index(Event $event)
     {
-        return view('pages.event');
+        // dd("inside event index with id \n $event");
+
+        // $event    = Event::find($id);
+        $channels = $event->channels;
+
+
+        return view('pages.event', [
+            'event'    => $event,
+            'channels' => $channels,
+        ]);
     }
 
     public function create(Request $request)
     {
+
         /* ----------------get------------------- */
         if ($request->isMethod('get'))
         {
@@ -39,13 +48,15 @@ class EventController extends Controller
             'email'     => $request->email,
             'location'  => $request->location,
             'details'   => $request->datails,
-        ]);
+        
+        ]);#->users()->save(Auth::user());
 
-        // current user has authorization level of 0 (team lead)
+        // current user has authorization level of 0 by default (team lead)
         Auth::user()->events()->save($event);
+        
             
         // redirecting to event page
-        return redirect()->route('event');
+        return redirect()->route('event', $event->id);
     }
 
 

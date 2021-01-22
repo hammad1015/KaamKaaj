@@ -6,11 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    
     protected $fillable = [
         'name', 'budget', 'email', 'location', 'details'
     ];
@@ -19,5 +15,9 @@ class Event extends Model
     {
         return $this->belongsToMany(User::class)
                     ->withPivot('authorization_level');
+    }
+    public function channels()
+    {
+        return $this->hasMany(Channel::class);
     }
 }

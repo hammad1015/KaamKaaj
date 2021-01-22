@@ -1,6 +1,7 @@
 @extends('base')
 @section('content')
     
-    event
+    {{ $event }}
+    {{ $channels }}
 
 @endsection

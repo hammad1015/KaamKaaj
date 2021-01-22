@@ -35,10 +35,11 @@ Route::prefix('user')->group(function(){
 /* -------------------------------------- event group routes ------------------------------------------- */
 Route::prefix('event')->group(function(){
 
-    Route::get ('/{id}'  ,[EventController::class, 'index'   ])->name('event')     ->middleware('auth');
-
+    
     Route::get ('/create',[EventController::class, 'create'  ])->name('new-event') ->middleware('auth');
-    Route::post('/create',[EventController::class, 'create'  ]);
+    Route::post('/create',[EventController::class, 'create'  ])->name('new-event');
+    
+    Route::get ('/{event}'  ,[EventController::class, 'index'   ])->name('event')     ->middleware('auth');
 
     /* ---------------------------------- channel sub-group routes -------------------------------------- */
     Route::prefix('channel')->group(function (){
