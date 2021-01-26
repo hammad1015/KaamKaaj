@@ -17,7 +17,6 @@ class UserController extends Controller
         $user   = Auth::user();
         $events = $user->events;
 
-        // dd($events);
 
         return view('pages.profile', [
             'user'   => $user,
@@ -39,7 +38,7 @@ class UserController extends Controller
         // validating request
         $this->validate($request, [
             'name'      => 'required',
-            'email'     => 'required|email', 
+            'email'     => 'required|email|unique:users', 
             'password'  => 'required|confirmed',
         ]);
         
@@ -54,7 +53,7 @@ class UserController extends Controller
         Auth::attempt($request->only('email', 'password'));
 
         // redirecting to user profile
-        return redirect()->route('profile');
+        return redirect()->route('profile')->with('status', 'account successfully created!');
     }
 
     public function login(Request $request)
@@ -75,7 +74,7 @@ class UserController extends Controller
         // authenticating user
         if (!Auth::attempt($request->only('email', 'password')))
         {
-            return back()->with('status', 'Invalid Login Details');
+            return back()->with('status', 'Invalid Login Details!');
         }
 
         // redirecting user to home
@@ -86,13 +85,13 @@ class UserController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('status', 'successfully logged out!');
     }
 
     public function delete()
     {
         Auth::user()->delete();
 
-        return redirect(route('home'))->with('status', 'user account successfully deleted');
+        return redirect(route('home'))->with('status', 'account successfully deleted!');
     }
 }

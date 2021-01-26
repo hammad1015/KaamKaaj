@@ -1,51 +1,63 @@
 @extends('base')
-@section('form')
+@section('content')
 
+<div class="row">
 
-login
+    <div class="text-center col-12 col-md-4 left">
 
-<form 
-    action="{{ route('login') }}" 
-    method="post"
-    >
+        <h1> login </h1>
 
-    @if (session('status'))
-        {{ session('status') }}
-    @endif
+        <form 
+            class="border border-warning bg-grey p-3 round"
+            style="background-color: #c6c7c8;"
+            action="{{ route('login') }}" 
+            method="post"
+            >
 
-    @csrf
+            @csrf
 
-	<div class="form-group">
-		<label>Email address</label>
-        <input 
-            type="email" 
-            name="email" 
-            class="form-control" 
-            placeholder="Enter email" 
-            value="{{  old('name')  }}"
-        >
-        @error('email')
-            -------------need email
-        @enderror
+            <div class="form-group">
+                <label>Email address</label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    class="form-control @error('email') border border-danger @enderror" 
+                    placeholder="Enter email" 
+                    value="{{  old('email')  }}"
+                    
+                >
+                @foreach ($errors->default->get('email') as $err)
+                    <span class="text-danger">{{ $err }}</span>
+                @endforeach
 
-	</div>
-	<div class="form-group">
-		<label>Password</label>
-        <input 
-            type="password" 
-            name="password" 
-            class="form-control" 
-            placeholder="Password" 
-        >
-        @error('password')
-            ----------------need password
-        @enderror
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input 
+                    type="password" 
+                    name="password" 
+                    class="form-control @error('password') border border-danger @enderror" 
+                    placeholder="Password" 
+                >
+                @foreach ($errors->default->get('password') as $err)
+                    <span class="text-danger">{{ $err }}</span>
+                @endforeach
+
+            </div>
+
+            <button type="submit" class="btn btn-warning" style="  border-radius: 25px;">Log in</button>
+            
+        </form>
 
     </div>
 
-	<button type="submit" class="btn btn-dark">Log in</button>
-	
-</form>
+    <div class="col-12 col-md-8 right">
+        <img 
+            class="img-fluid"
+            src="{{ asset('imgs/Usabilitytesting-cuate.png') }}"
+        >
+    </div>
 
+</div>
 
 @endsection

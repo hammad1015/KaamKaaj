@@ -33,7 +33,7 @@ Route::prefix('user')->group(function(){
     Route::get ('/login'    ,[UserController::class, 'login'    ])->name('login'    )->middleware('guest');
     Route::post('/login'    ,[UserController::class, 'login'    ]);
     Route::get ('/logout'   ,[UserController::class, 'logout'   ])->name('logout'   )->middleware('auth');
-    Route::get ('/delete'   ,[UserController::class, 'delete'   ])->name('user-del' )->middleware('auth');
+    Route::get ('/delete'   ,[UserController::class, 'delete'   ])->name('del-user' )->middleware('auth');
 
 });
 
@@ -45,18 +45,22 @@ Route::prefix('event')->group(function(){
 
 
 
-    /* ------------------------------ route sub-group for a specific event ---------------------------------- */
+    /* ---------------------------- route sub-group for a specific event ------------------------------- */
     Route::prefix('/{event}')->group(function (){
 
-        Route::get ('/'                 ,[EventController::class, 'index'           ])->name('event'            )->middleware('auth');
-        Route::get ('/leave'            ,[EventController::class, 'leave'           ])->name('leave'            )->middleware('auth');
-        Route::get ('/delete'           ,[EventController::class, 'delete'          ])->name('event-del'        )->middleware('auth');
-        Route::post('/new-participant'  ,[EventController::class, 'addParticipant'  ])->name('new-participant'  )->middleware('auth');
-        Route::get ('/participants'     ,[EventController::class, 'listParticipants'])->name('participants'     )->middleware('auth');
+        Route::get ('/'                     ,[EventController::class, 'index'               ])->name('event'                )->middleware('auth');
+        Route::get ('/leave'                ,[EventController::class, 'leave'               ])->name('leave'                )->middleware('auth');
+        Route::get ('/delete'               ,[EventController::class, 'delete'              ])->name('del-event'            )->middleware('auth');
+        Route::get ('/participants'         ,[EventController::class, 'listParticipants'    ])->name('participants'         )->middleware('auth');
+        Route::post('/new-participant'      ,[EventController::class, 'addParticipant'      ])->name('new-participant'      )->middleware('auth');
+        Route::get ('/remove-{user}'        ,[EventController::class, 'removeParticipant'   ])->name('del-participant'      )->middleware('auth');
+        Route::post('/search-participant'   ,[EventController::class, 'searchParticipant'   ])->name('search-participant'   )->middleware('auth');
+        Route::get ('/broadcast'            ,[EventController::class, 'broadcastEmail'      ])->name('broadcast'            )->middleware('auth');
+        Route::post('/broadcast'            ,[EventController::class, 'broadcastEmail'      ]);
 
     
 
-        /* ---------------------------------- channel sub-group routes -------------------------------------- */
+        /* -------------------------------- channel sub-group routes ----------------------------------- */
         Route::prefix('channel')->group(function (){
     
             Route::post('/create'   , [ChannelController::class, 'create'   ])->name('new-channel'  )->middleware('auth');

@@ -1,0 +1,617 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+*, *::before, *, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    font-size: 1 rem;
+    color: black;
+    min-height: 100vh;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    background-color: #FFC100;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.main-nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: inherit;
+}
+
+.main-nav a {
+    text-decoration: none;
+    padding: 1rem;
+    color: inherit;
+}
+/* 
+
+/* --------------------------------- add notes --------------------------------- *
+/* Remove margins and padding from the list *
+
+#addNotes ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the list items *
+
+#addNotes ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    list-style-type: none;
+    background: #F1F1F1;
+    border-radius: 16px;
+    width: 60%;
+    height: 100px;
+    margin-left: 40px;
+    /* make the list items unselectable *
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Darker background-color on hover *
+
+#addNotes ul li:hover {
+    background: #ddd;
+}
+
+/* Style the close button *
+
+#addNotes .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+}
+
+#addNotes .close:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Style the header *
+
+#addNotes .header {
+    padding: 30px 40px;
+    text-align: left;
+}
+
+/* Clear floats after the header *
+
+#addNotes .header:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Style the input *
+
+#addNotes input {
+    margin: 0;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    width: 75%;
+    height: 200px;
+    padding: 10px;
+    float: left;
+    text-align: justify;
+}
+
+/* Style the "Add" button *
+
+#addNotes .addBtn {
+    padding-top: 500px;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+    background-color: #FFC100;
+    float: left;
+    margin-left: 40px;
+}
+
+/* --------------------------------- add task --------------------------------- */
+/* Remove margins and padding from the list *
+
+#taskList ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the list items *
+
+#taskList ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    list-style-type: none;
+    background: #eee;
+    transition: 0.2s;
+    /* make the list items unselectable *
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) *
+
+#taskList ul li:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+/* Darker background-color on hover *
+
+#taskList ul li:hover {
+    background: #ddd;
+}
+
+/* When clicked on, add a background color and strike out text *
+
+#taskList ul li.checked {
+    text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on *
+
+#taskList ul li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: black;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+/* Style the close button *
+
+#taskList .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+}
+
+#taskList .close:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Style the header *
+
+#taskList .header {
+    padding: 30px 40px;
+    text-align: left;
+}
+
+/* Clear floats after the header *
+
+#taskList .header:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Style the input *
+
+#taskList input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    float: left;
+}
+
+/* Style the "Add" button *
+
+#taskList .addBtn {
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+    background-color: #FFC100;
+    float: left;
+}
+
+/* --------------------------------- landing --------------------------------- *
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    align-items: center;
+    height: 30px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.main-header a {
+    text-decoration: none;
+    padding: 1rem;
+    color: inherit;
+}
+
+.kaamkaaj {
+    font-size: 30px;
+}
+
+.full-height-grow {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 3em;
+}
+
+.subtitle {
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.btn {
+    color: black;
+    background-color: #FFC100;
+    border-radius: 5rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: .7rem 1.5rem;
+}
+
+.home-main-section {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.home-main-section .img-wrapper {
+    flex-grow: 1;
+    flex-direction: column;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+}
+
+.home-main-section .img {
+    background-image: url(Work time-cuate.png);
+    flex-grow: 1;
+    max-height: 70vh;
+    min-width: 30vw;
+    padding-left: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* --------------------------------- play area --------------------------------- *
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.name {
+    margin-left: 1.5 rem;
+    color: inherit;
+}
+
+.main-nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: inherit;
+}
+
+.main-nav a {
+    text-decoration: none;
+    padding: 1rem;
+    color: inherit;
+}
+
+/* .main-header *
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    background-color: #FFC100;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.menu {
+    float: left;
+    background-color: #C4C4C4;
+    width: 30%;
+    flex-grow: 1;
+    min-height: 100vh;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 1rem;
+}
+
+.menu a {
+    text-decoration: none;
+    padding: 1rem;
+    color: inherit;
+}
+
+.main-page {
+    float: left;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.home-main-section .main-page {
+    flex-grow: 1;
+    float: left;
+    flex-direction: column;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+}
+
+/*.home-main-section .img {
+    flex-grow: 1;
+    max-height: 70vh;
+    min-width: 30vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+*/
+/*.full-height-grow {
+    display: flex;
+    flex-direction: column;
+}*
+
+.workspace {
+    min-height: 100vh;
+    width: 625px;
+}
+
+img {
+    float: right;
+    padding-top: 300px;
+}
+
+/* --------------------------------- sign up --------------------------------- *
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    align-items: center;
+    height: 30px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.main-header a {
+    text-decoration: none;
+    padding: 1rem;
+    color: inherit;
+}
+
+.kaamkaaj {
+    font-size: 30px;
+    padding-left: 500px;
+    padding-right: 500px;
+}
+
+.full-height-grow {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    color: black;
+    background-color: #FFC100;
+    border-radius: 5rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: .7rem 1.5rem;
+    margin-top: 30px;
+}
+
+.home-main-section {
+    display: flex;
+    flex-grow: 1;
+}
+
+.home-main-section .right {
+    flex-grow: 1;
+    flex-direction: column;
+    display: flex;
+}
+
+.home-main-section .img {
+    background-image: url(Usability testing-cuate.png);
+    flex-grow: 1;
+    padding-left: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.left {
+    float: left;
+    background-color: #E5E5E5;
+    width: 100%;
+    text-align: center;
+    flex-grow: 1;
+    border-radius: 25px;
+    margin-left: 70px;
+    margin-top: 60px;
+}
+
+.left ul {
+    list-style: none;
+    padding: 1rem;
+}
+
+.left a {
+    text-decoration: none;
+    padding: 1rem;
+    color: inherit;
+}
+
+.data {
+    background-color: #C4C4C4;
+    color: black;
+    border-radius: 5rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: .7rem 1.5rem;
+    display: block;
+}
+
+.left .data:empty:before {
+    content: "\200b";
+}
+
+/* --------------------------------- login --------------------------------- *
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.name {
+    margin-left: 1.5 rem;
+    color: inherit;
+}
+
+.main-nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: inherit;
+}
+
+.main-nav a {
+    text-decoration: none;
+    padding: 1rem;
+    color: inherit;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    background-color: #FFC100;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.menu {
+    float: left;
+    background-color: #C4C4C4;
+    width: 30%;
+    flex-grow: 1;
+    min-height: 100vh;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 1rem;
+}
+
+.menu a {
+    text-decoration: none;
+    padding: 1rem;
+    color: inherit;
+}
+
+.main-page {
+    float: left;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.home-main-section .main-page {
+    flex-grow: 1;
+    float: left;
+    flex-direction: column;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+}
+
+.home-main-section .img {
+    flex-grow: 1;
+    max-height: 70vh;
+    min-width: 30vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.full-height-grow {
+    display: flex;
+    flex-direction: column;
+} */

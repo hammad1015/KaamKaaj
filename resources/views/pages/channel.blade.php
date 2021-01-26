@@ -1,8 +1,31 @@
 @extends('base')
 @section('content')
 
+{{-- <style>
+    .event-link {
+        color: black;
+        font-weight: 600;
+    }
+    .event-link:hover {
+        text-decoration: none;
+        color: aqua;
+    }
+</style> --}}
+{{-- <a href="{{ route('event', $event) }}" class="btn btn-warning"><< Back to Event</a> --}}
 
-<form action="{{ route('new-post', [$event, $channel]) }}" method="POST">
+<h1 
+    {{-- href="{{ route('event', $event) }}" --}}
+    class="event-link display-4 text-secondary"
+    >{{ $channel->name }}:
+</h1>
+
+
+
+<form 
+    action="{{ route('new-post', [$event, $channel]) }}" 
+    method="POST"
+    class="py-3"
+    >
 
     @csrf
 
@@ -16,9 +39,9 @@
     </div>
     <br>
 
-<a href="{{ route('event', $event) }}" class="btn btn-dark"><< Back to Event</a>
+    <button type="submit" class="btn btn-warning round {{--float-right--}}" style="width: 10%">Post</button>
+{{-- <a href="{{ route('event', $event) }}" class="btn btn-warning"><< Back to Event</a> --}}
 
-<button type="submit" class="btn btn-outline-dark float-right" style="width: 10%">Post</button>
 
 </form>
 <div class="my-3">
